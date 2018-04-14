@@ -23,6 +23,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var playScore: UILabel!
     
     override func viewDidLoad() {
+        self.navigationController?.isNavigationBarHidden = true
         self.game = MemoryGame(numberOfPairs: (cardButton.count/2))
         self.resetGame()
     }
@@ -55,7 +56,7 @@ class ViewController: UIViewController {
         playScore.text = "\(score)"
     }
     
-    func updateGameScreen (result: String) {
+    func updateGameScreen (result: Int) {
         var cards = game.cards
         
         for index in cardButton.indices {
@@ -72,12 +73,8 @@ class ViewController: UIViewController {
        
         playCount += 1
         playCounter.text = "\(playCount)"
+        score  += result
         
-        if result == "match" {
-            score += 2
-        } else if result == "unmatch" {
-            score -= 1
-        }
         
         playScore.text = "\(score)"
         
